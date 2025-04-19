@@ -11,10 +11,20 @@ In the second stage, a transformer is trained on the latent representations. It 
 
 ## Generated example
 After First Stage (Reconstruction):
-![img_stage_1](images/recflow_1_5_steps.png)
+<!-- ![img_stage_1](images/recflow_1_5_steps.png) -->
 
 After Second Stage (Reconstruction):
-![img_stage_2](images/recflow_1_5_steps.png)
+<!-- ![img_stage_2](images/recflow_1_5_steps.png) -->
 
 
-
+## Citation
+```bibtex
+@misc{esser2021taming,
+      title={Taming Transformers for High-Resolution Image Synthesis}, 
+      author={Patrick Esser and Robin Rombach and Björn Ommer},
+      year={2021},
+      eprint={2012.09841},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
