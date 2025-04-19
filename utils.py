@@ -4,7 +4,9 @@ import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 
 import os
+import zipfile
 import requests
+import subprocess
 import albumentations
 from tqdm import tqdm
 
@@ -220,6 +222,36 @@ def get_ckpt_path(name, root):
 
 
 # --------------------------------------------- #
-#                  LPIPS
+#                  Main
 #               START POINT
 # --------------------------------------------- #
+
+
+def download_celeba(dataset_zip="celeba-dataset.zip"):
+    """Downloads the CelebA dataset using Kaggle API if it hasn't been downloaded."""
+    if os.path.exists(dataset_zip):
+        print(f"{dataset_zip} already exists. Skipping download.")
+        return
+
+    print("Downloading CelebA dataset from Kaggle...")
+    try:
+        subprocess.run(
+            ["kaggle", "datasets", "download", "-d", "jessicali9530/celeba-dataset"],
+            check=True
+        )
+        print("Download complete.")
+    except subprocess.CalledProcessError as e:
+        print("Kaggle download failed. Make sure Kaggle API is installed and your credentials are set up.")
+        raise e
+
+
+def extract_dataset(dataset_zip="celeba-dataset.zip", extract_to="celeba"):
+    """Extracts the CelebA dataset zip into a directory."""
+    if os.path.exists(extract_to):
+        print(f"Directory '{extract_to}' already exists. Skipping extraction.")
+        return
+
+    print(f"Extracting {dataset_zip} to '{extract_to}'...")
+    with zipfile.ZipFile(dataset_zip, 'r') as zip_ref:
+        zip_ref.extractall(extract_to)
+    print("Extraction complete.")
