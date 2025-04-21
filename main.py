@@ -1,6 +1,6 @@
 from types import SimpleNamespace
 
-from .train import TrainVQGAN
+from .train_vqgan import TrainVQGAN
 from .utils import *
 
 
@@ -25,8 +25,8 @@ args = SimpleNamespace(
 )
 
 def main():
-    dataset_zip = "celeba-dataset.zip"
-    extract_folder = "celeba"
+    dataset_zip = "<your path to dataset>"
+    extract_folder = "<name of directory>"
 
     download_celeba(dataset_zip)
     extract_dataset(dataset_zip, extract_folder)
